@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="rodrigo.floatview">
+
+    <uses-sdk android:minSdkVersion="13"
+            android:targetSdkVersion="19"/>
+    <application
+            android:icon="@drawable/icon"
+            android:label="@string/app_name">
+        <activity
+                android:name=".FloatViewTestActivity"
+                android:configChanges="keyboardHidden|orientation|screenSize"
+                android:label="@string/app_name"
+                android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <!-- :float view -->
+        <service
+                android:name=".view.FloatService"
+                android:exported="false">
+        </service>
+    </application>
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL"/>
+</manifest>
