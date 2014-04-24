@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FloatViewDmo</string>
+    <string name="person">person</string>
+    <string name="community">gemeinde</string>
+    <string name="quit">verlassen</string>
+    <string name="right_append">right_append</string>
+    <string name="left_append">left_append</string>
+    <string name="close">close float view</string>
+    <string name="start">start float view</string>
+</resources>
