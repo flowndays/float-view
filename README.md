@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 volley-plus
 ===========
 
@@ -91,3 +92,9 @@ Example to use ImageLoader:
         }
       }
     }
+=======
+float-view
+==========
+
+A float view demo.
+>>>>>>> FloatView/master
