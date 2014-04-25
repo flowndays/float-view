@@ -49,7 +49,7 @@ public class FloatViewManger implements IFloatViewState {
 
 	private FloatViewGroup mFloatViewGroup;
 
-	interface IItemClick {
+	public interface IItemClick {
 		void onItemClick(int id);
 	}
 

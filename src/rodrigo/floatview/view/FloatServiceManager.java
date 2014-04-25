@@ -2,6 +2,7 @@ package rodrigo.floatview.view;
 
 import android.content.Context;
 import android.content.Intent;
+import rodrigo.floatview.FloatService;
 
 /**
  * Created with Intellij IDEA Author: Rodrigo Date: 14-4-18 Time: 下午1:47

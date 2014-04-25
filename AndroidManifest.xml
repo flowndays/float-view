@@ -21,7 +21,7 @@
 
         <!-- :float view -->
         <service
-                android:name=".view.FloatService"
+                android:name=".FloatService"
                 android:exported="false">
         </service>
     </application>

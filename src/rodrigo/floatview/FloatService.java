@@ -1,4 +1,4 @@
-package rodrigo.floatview.view;
+package rodrigo.floatview;
 
 import android.app.Service;
 import android.content.BroadcastReceiver;
@@ -8,6 +8,8 @@ import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.os.IBinder;
 import android.widget.Toast;
+import rodrigo.floatview.view.FloatViewGroup;
+import rodrigo.floatview.view.FloatViewManger;
 
 /**
  * Created with Intellij IDEA Author: Rodrigo Date: 14-4-9 Time: 下午12:46
