@@ -3,7 +3,10 @@ package rodrigo.floatview.view;
 import android.os.Handler;
 
 /**
- * Created with Intellij IDEA Author: Rodrigo Date: 14-4-10 Time: 下午2:14
+ * Active but folded state. Automatically changed to inactive state if no
+ * interaction happened in 2 seconds. Change to StateActiveSpread if clicked.
+ * Created with Intellij IDEA
+ * Author: * Rodrigo Date: 14-4-10 Time: 下午2:14
  */
 public class StateActiveFolded implements IFloatViewState {
 	private FloatViewManger mFloatView;
@@ -22,23 +25,30 @@ public class StateActiveFolded implements IFloatViewState {
 
 	@Override
 	public void onInit() {
-		mFloatView.setBackground(true);
-		mFloatView.getHandler().sendMessageDelayed(
-				mFloatView.getHandler().obtainMessage(FloatViewManger.MESSAGE_STATE_CHANGE, mRunnable), 2000);
-	}
+		mFloatView.setBackgroundState(true);
+        autoInactive();
+    }
 
-	@Override
+    private void autoInactive() {
+        mFloatView.getHandler().sendMessageDelayed(
+                mFloatView.getHandler().obtainMessage(FloatViewManger.MESSAGE_STATE_CHANGE, mRunnable), 2000);
+    }
+
+    @Override
 	public void onDrag() {
 		mHandler.removeMessages(FloatViewManger.MESSAGE_ADSORB);
 		mHandler.removeMessages(FloatViewManger.MESSAGE_STATE_CHANGE);
-		mFloatView.getHandler()
-				.sendMessageDelayed(mFloatView.getHandler().obtainMessage(FloatViewManger.MESSAGE_ADSORB), 500);
-		mFloatView.getHandler().sendMessageDelayed(
-				mFloatView.getHandler().obtainMessage(FloatViewManger.MESSAGE_STATE_CHANGE, mRunnable), 2000);
-		mFloatView.setClickable(false);
+        autoAdsorb();
+        autoInactive();
+        mFloatView.setClickable(false);
 	}
 
-	@Override
+    private void autoAdsorb() {
+        mFloatView.getHandler().sendMessageDelayed(
+                mFloatView.getHandler().obtainMessage(FloatViewManger.MESSAGE_ADSORB), 200);
+    }
+
+    @Override
 	public void onClick() {
 		mHandler.removeMessages(FloatViewManger.MESSAGE_ADSORB);
 		mHandler.removeMessages(FloatViewManger.MESSAGE_STATE_CHANGE);

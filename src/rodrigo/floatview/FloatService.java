@@ -19,9 +19,29 @@ public class FloatService extends Service implements FloatViewManger.IItemClick 
 
 	private FloatViewManger mFloatView;
 
+	/**
+	 * Make adjustment when the orientation is changed.
+	 */
+	public BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent myIntent) {
+			if (myIntent.getAction().equals(CONFIG_CHANGED)) {
+				if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+					mFloatView.setLandScape(context);
+				} else {
+					mFloatView.setPortrait(context);
+				}
+			}
+		}
+	};
+
 	@Override
 	public void onCreate() {
 		super.onCreate();
+		registerOrientationReceiver();
+	}
+
+	private void registerOrientationReceiver() {
 		IntentFilter filter = new IntentFilter();
 		filter.addAction(CONFIG_CHANGED);
 		this.registerReceiver(mBroadcastReceiver, filter);
@@ -34,7 +54,7 @@ public class FloatService extends Service implements FloatViewManger.IItemClick 
 	}
 
 	private void initFloatView(Intent intent) {
-		if (mFloatView == null) {
+		if (mFloatView == null) {// to avoid duplicated calls.
 			mFloatView = new FloatViewManger(getApplication(),
 					(FloatViewManger.Direction) intent.getSerializableExtra(FloatViewManger.DIRECTION),
 					intent.getFloatExtra(FloatViewManger.Y_PERCENT, 0.2f), this);
@@ -75,16 +95,4 @@ public class FloatService extends Service implements FloatViewManger.IItemClick 
 		}
 	}
 
-	public BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
-		@Override
-		public void onReceive(Context context, Intent myIntent) {
-			if (myIntent.getAction().equals(CONFIG_CHANGED)) {
-				if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-					mFloatView.setLandScape(context);
-				} else {
-					mFloatView.setPortrait(context);
-				}
-			}
-		}
-	};
 }

@@ -3,6 +3,7 @@ package rodrigo.floatview.view;
 import android.os.Handler;
 
 /**
+ * Active and spread state. Automatically change to StateActiveFolded if no interaction happened in 10 seconds.
  * Created with Intellij IDEA Author: Rodrigo Date: 14-4-10 Time: 下午2:14
  */
 public class StateActiveSpread implements IFloatViewState {
@@ -24,7 +25,7 @@ public class StateActiveSpread implements IFloatViewState {
 
 	@Override
 	public void onInit() {
-		mFloatView.setBackground(true);
+		mFloatView.setBackgroundState(true);
 		mFloatView.getHandler().sendMessageDelayed(
 				mFloatView.getHandler().obtainMessage(FloatViewManger.MESSAGE_STATE_CHANGE, mRunnable), 10000);
 	}

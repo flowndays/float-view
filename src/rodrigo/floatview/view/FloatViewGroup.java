@@ -12,12 +12,11 @@ import com.nineoldandroids.animation.ObjectAnimator;
 import rodrigo.floatview.R;
 
 /**
- * The Float View include a rounded floating button and two hidden layouts:
- * mSpreadLeft and mSpreadRight. mFloatButton can be dragged to anywhere in the
- * screen, but it will automatically move to left or right of the screen
- * according to the X position. If it moves to the left, then mSpreadLeft will
- * be activated and set Visible when mFloatButton is clicked, and vise versa. *
- * Created with Intellij IDEA Author: Rodrigo Date: 14-4-14 Time: 下午12:53
+ * The Float View include a rounded floating button and two hidden layouts: mSpreadLeft and mSpreadRight.
+ * mFloatButton can be dragged to anywhere in the screen, but it will automatically move to left or right of the screen
+ * according to the X position. If it moves to the left, then mSpreadLeft will be activated and set Visible when mFloatButton is clicked, and vise versa.
+ * Created with Intellij IDEA
+ * Author: Rodrigo Date: 14-4-14 Time: 下午12:53
  */
 public class FloatViewGroup {
 	private class SpreadViews {
@@ -43,6 +42,9 @@ public class FloatViewGroup {
 	private FloatViewManger.IItemClick mItemClick;
 	private WindowManager mWindowManager;
 
+    /**
+     * hard coded buttons, should be configurable in future.
+     */
 	public static final int ID_PERSON = 0;
 	public static final int ID_COMMUNITY = 1;
 	public static final int ID_QUIT = 2;

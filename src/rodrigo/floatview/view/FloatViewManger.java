@@ -49,6 +49,9 @@ public class FloatViewManger implements IFloatViewState {
 
 	private FloatViewGroup mFloatViewGroup;
 
+	/**
+	 * Call back of the buttons in spreading layout.
+	 */
 	public interface IItemClick {
 		void onItemClick(int id);
 	}
@@ -65,6 +68,12 @@ public class FloatViewManger implements IFloatViewState {
 			case MESSAGE_ADSORB:
 				setClickable(false);
 				setTouchable(false);
+
+				/*
+				 * Repeatedly send Message to this Handler, to update the
+				 * position of the Floating View. To add more animation effects,
+				 * use property animation instead.
+				 */
 				if (mCurrentX <= mScreen.x / 2) {
 					new Handler().postDelayed(new Runnable() {
 						@Override
@@ -77,8 +86,6 @@ public class FloatViewManger implements IFloatViewState {
 								mCurrentDirection = Direction.LEFT;
 								setClickable(true);
 								setTouchable(true);
-								FloatServiceManager.getInstance().setDirection(mCurrentDirection);
-								FloatServiceManager.getInstance().setDirectionY(mCurrentY / mScreen.y);
 							}
 						}
 					}, 10);
@@ -94,8 +101,6 @@ public class FloatViewManger implements IFloatViewState {
 								mCurrentDirection = Direction.RIGHT;
 								setClickable(true);
 								setTouchable(true);
-								FloatServiceManager.getInstance().setDirection(mCurrentDirection);
-								FloatServiceManager.getInstance().setDirectionY(mCurrentY / mScreen.y);
 							}
 						}
 					}, 10);
@@ -116,9 +121,11 @@ public class FloatViewManger implements IFloatViewState {
 			mCurrentX = rawX - mFloatViewGroup.getWidth() / 2;
 			mCurrentY = rawY - mFloatViewGroup.getHeight() / 2;
 
-			int mTouchSlop = 5;
-			boolean moveOrClick = (Math.abs(rawX - mFirstDownX) >= mTouchSlop)
-					&& (Math.abs(rawY - mFirstDownY) >= mTouchSlop);
+			int touchSlop = 5;// Minimal position diversity to be regarded as
+								// dragging. This number is chosen from
+								// experiments.
+			boolean moveOrClick = (Math.abs(rawX - mFirstDownX) >= touchSlop)
+					&& (Math.abs(rawY - mFirstDownY) >= touchSlop);
 
 			switch (event.getAction() & MotionEvent.ACTION_MASK) {
 			case MotionEvent.ACTION_DOWN:
@@ -183,7 +190,7 @@ public class FloatViewManger implements IFloatViewState {
 		return mStateInactive;
 	}
 
-	public void setBackground(boolean active) {
+	public void setBackgroundState(boolean active) {
 		mFloatViewGroup.setBackground(active);
 	}
 
