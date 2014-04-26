@@ -90,7 +90,7 @@ public class FloatViewGroup {
 		windowManager.getDefaultDisplay().getSize(size);
 		mScreenWidth = size.x;
 		mScreenHeight = size.y;
-		mFloatButton = (ImageView) LayoutInflater.from(context).inflate(R.layout.lib_view_floatview, null);
+		mFloatButton = (ImageView) LayoutInflater.from(context).inflate(R.layout.floatview, null);
 	}
 
 	private void initLayoutParams(FloatViewManger.Direction direction, float yPercent) {
@@ -117,11 +117,11 @@ public class FloatViewGroup {
 		mSpreadLayoutParams.width = WindowManager.LayoutParams.WRAP_CONTENT;
 		mSpreadLayoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
 
-		mSpreadRight = (ViewGroup) LayoutInflater.from(context).inflate(R.layout.lib_view_floatview_spread_right, null);
+		mSpreadRight = (ViewGroup) LayoutInflater.from(context).inflate(R.layout.floatview_spread_right, null);
 		mSpreadRight.setVisibility(View.INVISIBLE);
 		mWindowManager.addView(mSpreadRight, mSpreadLayoutParams);
 
-		mSpreadLeft = (ViewGroup) LayoutInflater.from(context).inflate(R.layout.lib_view_floatview_spread_left, null);
+		mSpreadLeft = (ViewGroup) LayoutInflater.from(context).inflate(R.layout.floatview_spread_left, null);
 		mSpreadLeft.setVisibility(View.INVISIBLE);
 		mWindowManager.addView(mSpreadLeft, mSpreadLayoutParams);
 
@@ -140,8 +140,8 @@ public class FloatViewGroup {
 
 	public void setBackground(boolean active) {
 		if (mFloatButton != null) {
-			mFloatButton.setBackgroundResource(active ? R.drawable.lib_floatview_logo_press
-					: R.drawable.lib_floatview_logo_selector);
+			mFloatButton.setBackgroundResource(active ? R.drawable.floatview_logo_press
+					: R.drawable.floatview_logo_selector);
 		}
 	}
 
